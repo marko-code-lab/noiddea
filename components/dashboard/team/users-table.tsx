@@ -20,7 +20,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Badge } from '@/components/ui/badge';
-import type { BusinessUser } from '@/hooks/use-business-users';
+import type { BusinessUser } from '@/src/hooks/use-business-users';
 import { ResetBenefitDialog } from './reset-benefit-dialog';
 import { DeleteUserDialog } from './delete-user-dialog';
 import { HugeiconsIcon } from "@hugeicons/react";

@@ -3,8 +3,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { getProducts, createProduct, updateProduct, deleteProduct } from '@/app/actions';
 import { queryKeys } from '@/lib/query-keys';
-import type { ProductWithPresentations } from '@/types';
-import type { CreateProductData } from './use-products';
 
 /**
  * Hook para obtener productos usando TanStack Query
@@ -58,12 +56,12 @@ export function useUpdateProduct() {
     onSuccess: () => {
       // Invalidar todas las queries de productos sin forzar refetch inmediato
       // Esto mejora el rendimiento y evita recargas innecesarias
-      queryClient.invalidateQueries({ 
+      queryClient.invalidateQueries({
         queryKey: queryKeys.products.all,
         refetchType: 'none', // Solo marcar como stale, no refetch inmediato
       });
       // Invalidar todas las queries por branch también
-      queryClient.invalidateQueries({ 
+      queryClient.invalidateQueries({
         queryKey: ['products', 'branch'],
         refetchType: 'none',
       });

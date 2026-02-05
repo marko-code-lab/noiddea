@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
-import type { BranchUser } from '@/types';
+import type { BranchUser } from '@/src/types';
 
 export interface BranchUserWithUser extends BranchUser {
   user?: {

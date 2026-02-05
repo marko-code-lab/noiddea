@@ -75,7 +75,7 @@ export function ProductsTable({
           <Checkbox
             checked={
               table.getIsAllPageRowsSelected() ||
-              (table.getIsSomePageRowsSelected() && 'indeterminate')
+              (table.getIsSomePageRowsSelected() && 'indeterminate') as boolean
             }
             onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
             aria-label='Seleccionar todos'

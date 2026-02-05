@@ -5,7 +5,7 @@
 import { useCallback } from 'react';
 import { getProducts, createProduct, updateProduct, deleteProduct } from '@/app/actions';
 import { useAsync } from './use-async';
-import type { ProductWithPresentations } from '@/types';
+import type { ProductWithPresentations } from '@/src/types';
 
 export interface CreateProductData {
   branchId: string;
@@ -128,17 +128,17 @@ export function useProducts(branchId?: string) {
   return {
     // Datos
     products,
-    
+
     // Estados de carga
     loading: isLoading,
     isLoading,
     creating,
     updating,
     deleting,
-    
+
     // Error
     error,
-    
+
     // Acciones
     fetchProducts,
     createProduct: create,

@@ -86,11 +86,11 @@ export function CreateBranchDialog({ onSuccess }: CreateBranchDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+      <DialogTrigger render={
         <Button className='w-full'>
           Crear sucursal
         </Button>
-      </DialogTrigger>
+      } />
       <DialogContent className='max-w-md'>
         <DialogHeader>
           <DialogTitle>Crear sucursal</DialogTitle>
@@ -134,18 +134,18 @@ export function CreateBranchDialog({ onSuccess }: CreateBranchDialogProps) {
                 <InputGroupAddon>
                   <InputGroupText>+51</InputGroupText>
                 </InputGroupAddon>
-                <InputGroupInput 
-                  placeholder="000 000 000" 
-                  id="phone" 
-                  type="text" 
-                  value={formData.phone} 
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })} 
-                  disabled={isSubmitting} 
+                <InputGroupInput
+                  placeholder="000 000 000"
+                  id="phone"
+                  type="text"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  disabled={isSubmitting}
                   required
                 />
                 <InputGroupAddon align="inline-end">
                   <Tooltip>
-                    <TooltipTrigger asChild>
+                    <TooltipTrigger render={
                       <InputGroupButton
                         variant="ghost"
                         aria-label="Info"
@@ -153,7 +153,7 @@ export function CreateBranchDialog({ onSuccess }: CreateBranchDialogProps) {
                       >
                         <HugeiconsIcon icon={InformationCircleIcon} strokeWidth={2} />
                       </InputGroupButton>
-                    </TooltipTrigger>
+                    } />
                     <TooltipContent>
                       <p>Si la sucursal no cuenta con teléfono propio, ingresa el número de la empresa</p>
                     </TooltipContent>

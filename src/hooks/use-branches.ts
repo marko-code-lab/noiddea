@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useSupabase } from './use-supabase';
 import { useBusiness } from './use-business';
-import type { Branch } from '@/types';
+import type { Branch } from '@/src/types';
 
 export function useBranches() {
   const supabase = useSupabase();

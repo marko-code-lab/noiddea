@@ -2,7 +2,7 @@
 
 import { createServerSupabaseClient } from '@/lib/supabase/server';
 import { revalidatePath } from 'next/cache';
-import type { SupplierInsert, SupplierUpdate } from '@/types';
+import type { SupplierInsert, SupplierUpdate } from '@/src/types';
 
 /**
  * Obtiene todos los proveedores de un negocio

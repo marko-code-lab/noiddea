@@ -10,7 +10,7 @@ import { revalidatePath } from 'next/cache';
 import type {
   ProductPresentationInsert,
   ProductPresentationUpdate,
-} from '@/types';
+} from '@/src/types';
 
 /**
  * Crea una nueva presentación para un producto existente
@@ -132,7 +132,7 @@ export async function updatePresentation(
 
     const product = presentation.products as any;
     const businessId = product?.branches?.business_id;
-    
+
     if (!businessId) {
       return { success: false, error: 'No se pudo verificar el negocio' };
     }

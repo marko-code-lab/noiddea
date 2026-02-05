@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useSupabase } from './use-supabase';
 import { useUser } from './use-user';
-import type { Business, BusinessUser, BusinessUserRole } from '@/types';
+import type { Business, BusinessUser, BusinessUserRole } from '@/src/types';
 
 interface BusinessData {
   business: Business;

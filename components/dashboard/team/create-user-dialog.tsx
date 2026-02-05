@@ -174,7 +174,7 @@ export function CreateUserDialog({ onSuccess }: CreateUserDialogProps) {
                   />
                   <InputGroupAddon align="inline-end">
                     <Tooltip>
-                      <TooltipTrigger asChild>
+                      <TooltipTrigger render={
                         <InputGroupButton
                           variant="ghost"
                           aria-label="Info"
@@ -182,7 +182,7 @@ export function CreateUserDialog({ onSuccess }: CreateUserDialogProps) {
                         >
                           <HugeiconsIcon icon={InformationCircleIcon} strokeWidth={2} />
                         </InputGroupButton>
-                      </TooltipTrigger>
+                      } />
                       <TooltipContent>
                         <p>El número de teléfono del usuario</p>
                       </TooltipContent>
@@ -232,7 +232,7 @@ export function CreateUserDialog({ onSuccess }: CreateUserDialogProps) {
               <Select
                 value={formData.role}
                 onValueChange={(value) =>
-                  setFormData({ ...formData, role: value })
+                  setFormData({ ...formData, role: value as 'cashier' | 'manager' })
                 }
                 disabled={isSubmitting}
               >

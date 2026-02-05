@@ -13,7 +13,7 @@ import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
 import { toast } from 'sonner';
 import { deleteUser } from '@/app/actions';
-import type { BusinessUser } from '@/hooks/use-business-users';
+import type { BusinessUser } from '@/src/hooks/use-business-users';
 
 interface DeleteUserDialogProps {
   user: BusinessUser | null;

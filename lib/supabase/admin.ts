@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import { Database } from '@/types/supabase';
+import { Database } from '@/src/types/supabase';
 
 /**
  * Cliente de Supabase con Service Role Key
@@ -39,7 +39,7 @@ export function createAdminClient() {
   if (typeof window !== 'undefined') {
     throw new Error(
       '⚠️ PELIGRO: createAdminClient() solo puede usarse en el servidor. ' +
-        'Esto podría exponer tu service role key al cliente.'
+      'Esto podría exponer tu service role key al cliente.'
     );
   }
 

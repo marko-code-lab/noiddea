@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useSupabase } from './use-supabase';
-import type { Supplier } from '@/types';
+import type { Supplier } from '@/src/types';
 
 export function useSuppliers(businessId?: string) {
   const supabase = useSupabase();
@@ -63,7 +63,7 @@ export function useSuppliers(businessId?: string) {
     };
   }, [businessId, supabase]);
 
-  return { suppliers, loading, error, refetch: () => {} };
+  return { suppliers, loading, error, refetch: () => { } };
 }
 
 export function useSupplier(supplierId?: string) {

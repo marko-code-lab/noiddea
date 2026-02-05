@@ -21,7 +21,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { toast } from 'sonner';
-import type { ProductWithPresentations } from '@/src/types';
+import type { ProductPresentation, ProductWithPresentations } from '@/src/types';
 import { Spinner } from '@/components/ui/spinner';
 import { updateProductPresentations } from '@/app/actions';
 import { useUpdateProduct } from '@/src/hooks';
@@ -401,7 +401,7 @@ export function EditProductDialog({
                             <Select
                               value={presentation.variant}
                               onValueChange={(value) =>
-                                handlePresentationChange(index, 'variant', value)
+                                handlePresentationChange(index, 'variant', value as ProductPresentation['variant'])
                               }
                               disabled={isSubmitting || updateProductMutation.isPending}
                             >

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useSupabase } from './use-supabase';
-import type { PurchaseWithItems } from '@/types';
+import type { PurchaseWithItems } from '@/src/types';
 
 export function usePurchases(businessId?: string, branchId?: string) {
   const supabase = useSupabase();

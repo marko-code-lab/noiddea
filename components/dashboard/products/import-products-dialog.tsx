@@ -314,9 +314,9 @@ export function ImportProductsDialog() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+      <DialogTrigger render={
         <Button variant='outline'>Importar productos</Button>
-      </DialogTrigger>
+      } />
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Importar productos</DialogTitle>
@@ -327,7 +327,7 @@ export function ImportProductsDialog() {
         <FieldGroup>
           <Field>
             <FieldLabel>Tipo de importación</FieldLabel>
-            <Select value={importType} onValueChange={handleImportTypeChange}>
+            <Select value={importType} onValueChange={handleImportTypeChange as any}>
               <SelectTrigger>
                 <SelectValue placeholder='Selecciona un tipo de importación' />
               </SelectTrigger>
@@ -383,7 +383,7 @@ export function ImportProductsDialog() {
               <FieldLabel>Sucursal de origen</FieldLabel>
               <Select
                 value={selectedSourceBranch}
-                onValueChange={setSelectedSourceBranch}
+                onValueChange={setSelectedSourceBranch as any}
                 disabled={isLoadingBranches || !selectedBranch}
               >
                 <SelectTrigger>

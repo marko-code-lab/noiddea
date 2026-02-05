@@ -25,7 +25,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Spinner } from '@/components/ui/spinner';
-import type { ProductPresentation } from '@/types';
+import type { ProductPresentation } from '@/src/types';
 import { HugeiconsIcon } from "@hugeicons/react";
 import { MoreVerticalCircle01Icon } from "@hugeicons/core-free-icons";
 import { useEffect, useState } from 'react';
@@ -88,13 +88,13 @@ export function EditPresentationDialog({
 
       if (result.success) {
         // Invalidar todas las queries de productos para refrescar la lista
-        await queryClient.invalidateQueries({ 
+        await queryClient.invalidateQueries({
           predicate: (query) => {
             return query.queryKey[0] === 'products';
           },
           refetchType: 'active',
         });
-        
+
         toast.success('Presentación actualizada exitosamente');
         setOpen(false);
       } else {
@@ -121,13 +121,13 @@ export function EditPresentationDialog({
 
       if (result.success) {
         // Invalidar todas las queries de productos para refrescar la lista
-        await queryClient.invalidateQueries({ 
+        await queryClient.invalidateQueries({
           predicate: (query) => {
             return query.queryKey[0] === 'products';
           },
           refetchType: 'active',
         });
-        
+
         toast.success('Presentación desactivada');
         setShowDeleteConfirm(false);
         setOpen(false);
@@ -150,13 +150,13 @@ export function EditPresentationDialog({
 
       if (result.success) {
         // Invalidar todas las queries de productos para refrescar la lista
-        await queryClient.invalidateQueries({ 
+        await queryClient.invalidateQueries({
           predicate: (query) => {
             return query.queryKey[0] === 'products';
           },
           refetchType: 'active',
         });
-        
+
         toast.success('Presentación activada');
         setOpen(false);
       } else {
@@ -172,11 +172,11 @@ export function EditPresentationDialog({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+      <DialogTrigger render={
         <Button variant='ghost' size='icon-sm'>
           <HugeiconsIcon icon={MoreVerticalCircle01Icon} strokeWidth={2} />
         </Button>
-      </DialogTrigger>
+      } />
       <DialogContent className='max-w-lg'>
         <DialogHeader>
           <DialogTitle>Editar Presentación</DialogTitle>

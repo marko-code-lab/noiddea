@@ -13,6 +13,3 @@ export { createServerSupabaseClient } from './server';
 
 // Cliente administrativo con service role (Solo servidor, operaciones admin)
 export { createAdminClient, getAdminClient, executeAsAdmin } from './admin';
-
-// Middleware
-export { updateSession } from './middleware';

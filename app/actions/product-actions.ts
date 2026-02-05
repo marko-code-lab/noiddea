@@ -6,7 +6,6 @@
 
 import { createServerSupabaseClient } from '@/lib/supabase/server';
 import { createAdminClient } from '@/lib/supabase/admin';
-import type { ProductInsert, ProductPresentationInsert } from '@/types';
 import { logger } from '@/lib/logger';
 
 /**
@@ -558,7 +557,7 @@ export async function updateProductPresentations(
               units: presentation.units,
               price: presentation.price || null,
             } as any)
-            .eq('id', presentation.id)
+            .eq('id', presentation.id!)
         )
       );
     }
@@ -1048,7 +1047,7 @@ export async function importProductsFromBranch(data: {
               // La base de datos real usa variant y units
               let presentationVariant: string;
               let presentationUnits: number;
-              
+
               if (p.variant && p.units !== undefined) {
                 // Formato correcto: variant/units
                 presentationVariant = p.variant;
@@ -1526,7 +1525,7 @@ export async function importProductsFromExcel(formData: FormData) {
       'application/vnd.ms-excel', // .xls
       'application/vnd.ms-excel.sheet.macroEnabled.12', // .xlsm
     ];
-    
+
     if (!validExtensions.includes(file.type) && !file.name.match(/\.(xlsx|xls|xlsm)$/i)) {
       return {
         success: false,
@@ -1583,7 +1582,7 @@ export async function importProductsFromExcel(formData: FormData) {
     const arrayBuffer = await file.arrayBuffer();
     const XLSX = await import('xlsx');
     const workbook = XLSX.read(arrayBuffer, { type: 'array' });
-    
+
     // Obtener la primera hoja
     const firstSheetName = workbook.SheetNames[0];
     if (!firstSheetName) {
@@ -1594,7 +1593,7 @@ export async function importProductsFromExcel(formData: FormData) {
     }
 
     const worksheet = workbook.Sheets[firstSheetName];
-    const data = XLSX.utils.sheet_to_json(worksheet, { 
+    const data = XLSX.utils.sheet_to_json(worksheet, {
       header: 1,
       defval: null,
       raw: false,
@@ -1608,7 +1607,7 @@ export async function importProductsFromExcel(formData: FormData) {
     }
 
     // Obtener encabezados (primera fila)
-    const headers = data[0].map((h: any) => 
+    const headers = data[0].map((h: any) =>
       String(h || '').toLowerCase().trim()
     ) as string[];
 
@@ -1679,7 +1678,7 @@ export async function importProductsFromExcel(formData: FormData) {
     // Procesar cada fila (empezando desde la fila 2, índice 1)
     for (let i = 1; i < data.length; i++) {
       const row = data[i];
-      
+
       // Saltar filas vacías
       if (!row || row.every((cell: any) => !cell || String(cell).trim() === '')) {
         continue;
@@ -1705,7 +1704,7 @@ export async function importProductsFromExcel(formData: FormData) {
         const marca = getValue('marca');
         const codigoBarras = getValue('codigo_barras');
         const sku = getValue('sku');
-        
+
         // Parsear números
         const costoStr = getValue('costo') || getValue('precio') || '0';
         const precioStr = getValue('precio') || getValue('costo') || '0';
@@ -1750,7 +1749,7 @@ export async function importProductsFromExcel(formData: FormData) {
               const variant = parts[0];
               const units = parseInt(parts[1]) || 1;
               const price = parts[2] ? parseFloat(parts[2].replace(/[^0-9.-]/g, '')) : undefined;
-              
+
               if (variant && units > 0) {
                 presentaciones.push({ variant, units, price });
               }
@@ -1857,7 +1856,7 @@ export async function importProductsFromExcel(formData: FormData) {
 export async function generateExcelTemplate() {
   try {
     const XLSX = await import('xlsx');
-    
+
     // Crear datos de ejemplo
     const data = [
       // Encabezados
@@ -1951,7 +1950,7 @@ export async function exportProductsToExcel(branchId?: string) {
   try {
     // Obtener productos usando la función existente
     const productsResult = await getProducts(branchId);
-    
+
     if (!productsResult.success) {
       return {
         success: false,
@@ -1960,7 +1959,7 @@ export async function exportProductsToExcel(branchId?: string) {
     }
 
     const products = productsResult.products || [];
-    
+
     if (products.length === 0) {
       return {
         success: false,
@@ -1969,7 +1968,7 @@ export async function exportProductsToExcel(branchId?: string) {
     }
 
     const XLSX = await import('xlsx');
-    
+
     // Crear encabezados (igual que la plantilla)
     const headers = [
       'nombre',
@@ -2070,7 +2069,7 @@ export async function exportProductsToExcel(branchId?: string) {
         .select('name')
         .eq('id', branchId)
         .single();
-      
+
       if (branch?.name) {
         // Limpiar el nombre de la sucursal para usarlo en el nombre del archivo
         const branchName = branch.name.replace(/[^a-z0-9]/gi, '_').toLowerCase();

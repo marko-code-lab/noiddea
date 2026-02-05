@@ -19,9 +19,9 @@ export default function AssistantPage() {
           <HugeiconsIcon icon={PlusSignIcon} strokeWidth={2} />
         </InputGroupButton>
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
+          <DropdownMenuTrigger render={
             <InputGroupButton variant="ghost">Auto</InputGroupButton>
-          </DropdownMenuTrigger>
+          } />
           <DropdownMenuContent
             side="top"
             align="start"

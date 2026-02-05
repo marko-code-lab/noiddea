@@ -2,10 +2,10 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
-import { useAuth } from "@/hooks/use-auth";
-import { useBusiness } from "@/hooks/use-business";
-import { useSupabase } from "@/hooks/use-supabase";
+import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
+import { useAuth } from "@/src/hooks/use-auth";
+import { useBusiness } from "@/src/hooks/use-business";
+import { useSupabase } from "@/src/hooks/use-supabase";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { BirthdayCakeIcon } from "@hugeicons/core-free-icons";
 import Link from "next/link";
@@ -95,9 +95,9 @@ export function HomeHeader() {
           <NavigationMenuList>
             {navigationItems.map((item) => (
               <NavigationMenuItem key={item.label}>
-                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                <NavigationMenuLink render={
                   <Link href={item.href}>{item.label}</Link>
-                </NavigationMenuLink>
+                } className={navigationMenuTriggerStyle()} />
               </NavigationMenuItem>
             ))}
           </NavigationMenuList>

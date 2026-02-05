@@ -223,7 +223,7 @@ export function ShareProductDialog({
               <Select
                 value={targetBranchId}
                 onValueChange={(value) => {
-                  setTargetBranchId(value);
+                  setTargetBranchId(value as string);
                   setTargetProductId('');
                   setCreateNewProduct(false);
                 }}
@@ -258,7 +258,7 @@ export function ShareProductDialog({
                       setNewProductName(product?.name || '');
                     } else {
                       setCreateNewProduct(false);
-                      setTargetProductId(value);
+                      setTargetProductId(value as string);
                     }
                   }}
                   disabled={loadingProducts || transferring}

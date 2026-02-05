@@ -6,7 +6,7 @@
 
 import { createServerSupabaseClient } from '@/lib/supabase/server';
 import { createAdminClient } from '@/lib/supabase/admin';
-import type { BusinessInsert, BusinessUserInsert } from '@/types';
+import type { BusinessInsert, BusinessUserInsert } from '@/src/types';
 import { DEFAULT_THEME } from '@/lib/business-themes';
 
 /**

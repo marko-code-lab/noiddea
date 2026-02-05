@@ -2,7 +2,7 @@
  * Utilidades para cálculo de precios con overrides por sucursal
  */
 
-import type { ProductPresentation } from '@/types';
+import type { ProductPresentation } from '@/src/types';
 
 /**
  * Calcula el precio final de venta

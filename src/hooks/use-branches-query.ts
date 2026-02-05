@@ -4,7 +4,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useSupabase } from './use-supabase';
 import { createBranch } from '@/app/actions';
 import { queryKeys } from '@/lib/query-keys';
-import type { Branch } from '@/types';
+import type { Branch } from '@/src/types';
 
 /**
  * Hook para obtener sucursales usando TanStack Query

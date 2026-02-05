@@ -17,6 +17,7 @@ import type { CreateProductData } from '@/src/hooks/use-products';
 import { HugeiconsIcon } from "@hugeicons/react";
 import { PlusSignIcon, DeleteIcon } from "@hugeicons/core-free-icons";
 import { Spinner } from '@/components/ui/spinner';
+import { ProductPresentation } from '@/src/types';
 
 interface CreateProductFormProps {
   branchId: string;
@@ -275,7 +276,7 @@ export function CreateProductForm({
                       <Select
                         value={presentation.variant}
                         onValueChange={value =>
-                          handlePresentationChange(presentation.id, 'variant', value)
+                          handlePresentationChange(presentation.id, 'variant', value as ProductPresentation['variant'])
                         }
                       >
                         <SelectTrigger>

@@ -6,7 +6,7 @@ import type {
   PurchaseInsert,
   PurchaseUpdate,
   PurchaseItemInsert,
-} from '@/types';
+} from '@/src/types';
 
 /**
  * Obtiene todas las compras de un negocio
@@ -288,7 +288,7 @@ export async function receivePurchase(purchaseId: string) {
     // La tabla 'inventory' no existe en el esquema actual
     // El stock se maneja directamente en la tabla 'products'
     // TODO: Implementar actualización de stock en products cuando se recibe una compra
-    
+
     // Actualizar el stock del producto directamente
     for (const item of purchase.purchase_items) {
       // Obtener el producto asociado a la presentación

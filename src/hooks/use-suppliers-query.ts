@@ -4,7 +4,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { createClient } from '@/lib/supabase/client';
 import { createSupplier, updateSupplier } from '@/app/actions';
 import { queryKeys } from '@/lib/query-keys';
-import type { Supplier } from '@/types';
+import type { Supplier } from '@/src/types';
 
 /**
  * Hook para obtener proveedores usando TanStack Query
