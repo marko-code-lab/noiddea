@@ -247,7 +247,7 @@ export function SignupForm({
 
         // Redirigir al login después de un breve delay
         setTimeout(() => {
-          router.push('/auth/login');
+          router.push('/login');
         }, 2000);
       } else {
         toast.error(result.error || 'Error creando cuenta');

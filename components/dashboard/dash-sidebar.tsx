@@ -239,7 +239,7 @@ export function DashSidebar() {
               <HugeiconsIcon icon={UnfoldMoreIcon} strokeWidth={2} className="ml-auto" />
             </SidebarMenuButton>
           } />
-          <DropdownMenuContent side="right" align="end" className={'w-max'}>
+          <DropdownMenuContent side="right" align="end" className={'w-max min-w-64'}>
             <DropdownMenuGroup>
               <DropdownMenuLabel>
                 <div className="flex items-center gap-2">

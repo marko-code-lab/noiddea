@@ -22,15 +22,17 @@ import { queryKeys } from '@/lib/query-keys';
 import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput, InputGroupText } from '../ui/input-group';
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
 import { InformationCircleIcon } from "@hugeicons/core-free-icons";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
+import { useRouter } from 'next/navigation';
 
 interface CreateBranchDialogProps {
   onSuccess?: () => void;
 }
 
 export function CreateBranchDialog({ onSuccess }: CreateBranchDialogProps) {
-  const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const queryClient = useQueryClient();
+  const router = useRouter();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -63,7 +65,6 @@ export function CreateBranchDialog({ onSuccess }: CreateBranchDialogProps) {
 
       if (result.success) {
         toast.success('Sucursal creada correctamente');
-        setOpen(false);
         // Resetear formulario
         setFormData({
           name: '',
@@ -81,23 +82,19 @@ export function CreateBranchDialog({ onSuccess }: CreateBranchDialogProps) {
       toast.error('Error inesperado al crear sucursal');
     } finally {
       setIsSubmitting(false);
+      router.refresh();
     }
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger render={
-        <Button className='w-full'>
-          Crear sucursal
-        </Button>
-      } />
-      <DialogContent className='max-w-md'>
-        <DialogHeader>
-          <DialogTitle>Crear sucursal</DialogTitle>
-          <DialogDescription>
-            Agrega una nueva sucursal a tu negocio
-          </DialogDescription>
-        </DialogHeader>
+    <Card className='w-md z-10'>
+      <CardHeader>
+        <CardTitle>Crear sucursal</CardTitle>
+        <CardDescription>
+          Agrega una nueva sucursal a tu negocio
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
         <form onSubmit={handleSubmit}>
           <FieldGroup>
             <Field>
@@ -138,6 +135,7 @@ export function CreateBranchDialog({ onSuccess }: CreateBranchDialogProps) {
                   placeholder="000 000 000"
                   id="phone"
                   type="text"
+                  maxLength={9}
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   disabled={isSubmitting}
@@ -161,27 +159,16 @@ export function CreateBranchDialog({ onSuccess }: CreateBranchDialogProps) {
                 </InputGroupAddon>
               </InputGroup>
             </Field>
-
             <Field>
-              <div className='flex justify-end gap-2'>
-                <Button
-                  type='button'
-                  variant='outline'
-                  onClick={() => setOpen(false)}
-                  disabled={isSubmitting}
-                >
-                  Cancelar
-                </Button>
-                <Button type='submit' disabled={isSubmitting}>
-                  {isSubmitting && <Spinner />}
-                  Crear Sucursal
-                </Button>
-              </div>
+              <Button type='submit' disabled={isSubmitting} className='w-full'>
+                {isSubmitting && <Spinner />}
+                Crear Sucursal
+              </Button>
             </Field>
           </FieldGroup>
         </form>
-      </DialogContent>
-    </Dialog>
+      </CardContent>
+    </Card>
   );
 }
 

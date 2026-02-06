@@ -35,6 +35,7 @@ import { useState, useCallback, useMemo } from 'react';
 import type { ProductWithPresentations } from '@/src/types';
 import { CreateReportDialog } from '@/components/dashboard/products/create-report-dialog';
 import { DashLoading } from '@/components/dashboard/dash-loading';
+import { cn } from '@/lib/utils';
 
 export default function ProductsPage() {
   const { selectedBranch, isLoading: branchLoading } = useSelectedBranch();
@@ -90,7 +91,7 @@ export default function ProductsPage() {
         <DashLoading />
       ) : (
         <div className='space-y-4'>
-          <div className='flex justify-between gap-4'>
+          <div className={cn('flex justify-between gap-4', !products.length && 'hidden')}>
             <div className='flex items-center gap-2'>
               <InputGroup className='w-96 bg-card'>
                 <InputGroupInput
@@ -134,7 +135,7 @@ export default function ProductsPage() {
             </div>
           </div>
           {filteredProducts.length === 0 ? (
-            <div className='py-24'>
+            <div className='h-dvh flex items-center justify-center'>
               <Empty>
                 <EmptyHeader>
                   <EmptyMedia variant='icon'>
